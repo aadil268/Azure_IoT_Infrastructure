@@ -17,7 +17,7 @@ The module supports:
 
 ```hcl
 module "iothub_dps" {
-  source = "./AzureRM4/modules/iothub-dps?ref=main"
+  source = "git::https://dev.azure.com/AADIL/ABBASI-Terraform-Module-Library/_git/cat-tf-modules//AzureRM4/modules/iothub-dps?ref=main"
 
   name                = "my-iot-dps"
   resource_group_name = "my-resource-group"
@@ -29,7 +29,7 @@ module "iothub_dps" {
 
 ```hcl
 module "iothub_dps" {
-  source = "./AzureRM4/modules/iothub-dps?ref=main"
+  source = "git::https://dev.azure.com/AADIL/ABBASI-Terraform-Module-Library/_git/cat-tf-modules//AzureRM4/modules/iothub-dps?ref=main"
 
   name                = "my-iot-dps"
   resource_group_name = "my-resource-group"
@@ -54,7 +54,7 @@ module "iothub_dps" {
 
 ```hcl
 module "iothub_dps" {
-  source = "./AzureRM4/modules/iothub-dps?ref=main"
+  source = "git::https://dev.azure.com/AADIL/ABBASI-Terraform-Module-Library/_git/cat-tf-modules//AzureRM4/modules/iothub-dps?ref=main"
 
   name                = "my-iot-dps"
   resource_group_name = "my-resource-group"

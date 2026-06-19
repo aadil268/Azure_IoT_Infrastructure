@@ -3,30 +3,59 @@ data "azurerm_resource_group" "main" {
   name = var.resource_group_name
 }
 
-# Event Hub Module - for receiving IoT telemetry
-module "eventhub" {
-  source = "./AzureRM4/modules/eventhub"
+# Event Hub Namespace Module - creates the namespace
+module "eventhub_namespace" {
+  source = "./AzureRM4/modules/eventhub-namespace"
 
   namespace_name      = "${var.project_prefix}-ehns"
-  eventhub_name       = "${var.project_prefix}-telemetry"
   resource_group_name = data.azurerm_resource_group.main.name
   location            = var.location
   sku                 = var.eventhub_sku
   capacity            = var.eventhub_capacity
-  partition_count     = 4
-  message_retention   = 1
+}
 
-  # Create consumer groups for different processing scenarios
-  consumer_groups = [
-    {
-      name          = "telemetry-processor"
-      user_metadata = "Process device telemetry data"
-    },
-    {
-      name          = "archive-processor"
-      user_metadata = "Archive telemetry data for long-term storage"
-    }
-  ]
+# Event Hub Module - creates the event hub entity
+module "eventhub" {
+  source = "./AzureRM4/modules/eventhub"
+
+  eventhub_name     = "${var.project_prefix}-telemetry"
+  namespace_id      = module.eventhub_namespace.id
+  partition_count   = 4
+  message_retention = 1
+}
+
+# Event Hub Consumer Group - telemetry processor
+module "eventhub_consumer_group_telemetry" {
+  source = "./AzureRM4/modules/eventhub-consumer-group"
+
+  resource_group_name   = data.azurerm_resource_group.main.name
+  namespace_name        = module.eventhub_namespace.name
+  eventhub_name         = module.eventhub.name
+  consumer_group_name   = "telemetry-processor"
+  user_metadata         = "Process device telemetry data"
+}
+
+# Event Hub Consumer Group - archive processor
+module "eventhub_consumer_group_archive" {
+  source = "./AzureRM4/modules/eventhub-consumer-group"
+
+  resource_group_name   = data.azurerm_resource_group.main.name
+  namespace_name        = module.eventhub_namespace.name
+  eventhub_name         = module.eventhub.name
+  consumer_group_name   = "archive-processor"
+  user_metadata         = "Archive telemetry data for long-term storage"
+}
+
+# Event Hub Authorization Rule - for IoT Hub routing
+resource "azurerm_eventhub_authorization_rule" "iothub_sender" {
+  name                = "iothub-sender"
+  namespace_name      = module.eventhub_namespace.name
+  eventhub_name       = module.eventhub.name
+  resource_group_name = data.azurerm_resource_group.main.name
+
+  listen = true
+  send   = true
+  manage = false
 }
 
 # IoT Hub Module - main hub for device connectivity
@@ -49,7 +78,7 @@ module "iothub" {
     {
       type              = "AzureIotHub.EventHub"
       name              = "telemetry-endpoint"
-      connection_string = module.eventhub.iothub_sender_primary_connection_string
+      connection_string = azurerm_eventhub_authorization_rule.iothub_sender.primary_connection_string
     }
   ]
 

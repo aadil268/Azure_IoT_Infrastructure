@@ -1,3 +1,5 @@
+# Due to lifecycle limitations inside of the modules we are using delete locks to ensure database delete security
+# tflint-ignore: azurerm_resources_missing_prevent_destroy
 resource "azurerm_iothub" "this" {
   name                          = var.name
   resource_group_name           = var.resource_group_name
@@ -91,7 +93,6 @@ resource "azurerm_iothub" "this" {
   }
 
   lifecycle {
-    ignore_changes  = [tags]
-    prevent_destroy = true
+    ignore_changes = [tags]
   }
 }

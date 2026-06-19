@@ -24,17 +24,23 @@ output "iothub_primary_key" {
 # Event Hub Outputs
 output "eventhub_namespace_name" {
   description = "Event Hub Namespace name"
-  value       = module.eventhub.namespace_name
+  value       = module.eventhub_namespace.name
 }
 
 output "eventhub_name" {
   description = "Event Hub name for telemetry"
-  value       = module.eventhub.eventhub_name
+  value       = module.eventhub.name
 }
 
 output "eventhub_connection_string" {
   description = "Event Hub connection string for reading telemetry"
-  value       = module.eventhub.namespace_default_primary_connection_string
+  value       = module.eventhub_namespace.default_primary_connection_string
+  sensitive   = true
+}
+
+output "eventhub_iothub_sender_connection_string" {
+  description = "Event Hub connection string for IoT Hub routing"
+  value       = azurerm_eventhub_authorization_rule.iothub_sender.primary_connection_string
   sensitive   = true
 }
 
@@ -97,8 +103,8 @@ output "raspberry_pi_simulator_instructions" {
      az iot hub monitor-events --hub-name ${module.iothub.name} --device-id raspberrypi-simulator
   
   Or use Event Hub to read telemetry:
-     - Event Hub Namespace: ${module.eventhub.namespace_name}
-     - Event Hub Name: ${module.eventhub.eventhub_name}
+     - Event Hub Namespace: ${module.eventhub_namespace.name}
+     - Event Hub Name: ${module.eventhub.name}
   
   ========================================
   EOT

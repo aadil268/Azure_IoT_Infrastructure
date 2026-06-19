@@ -12,7 +12,7 @@ This Terraform module provisions an **Azure IoT Hub**, the cloud gateway for IoT
 
 ```hcl
 module "iothub" {
-  source = "./AzureRM4/modules/iothub?ref=main"
+  source = "git::https://dev.azure.com/AADIL/ABBASI-Terraform-Module-Library/_git/cat-tf-modules//AzureRM4/modules/iothub?ref=main"
 
   name                = "coffee-iot-hub"
   resource_group_name = "my-resource-group"
@@ -24,7 +24,7 @@ module "iothub" {
 
 ```hcl
 module "iothub" {
-  source = "./AzureRM4/modules/iothub?ref=main"
+  source = "git::https://dev.azure.com/AADIL/ABBASI-Terraform-Module-Library/_git/cat-tf-modules//AzureRM4/modules/iothub?ref=main"
 
   name                         = "coffee-iot-hub"
   resource_group_name          = "my-resource-group"
@@ -69,7 +69,7 @@ module "iothub" {
 
 ```hcl
 module "iothub" {
-  source = "./AzureRM4/modules/iothub?ref=main"
+  source = "git::https://dev.azure.com/AADIL/ABBASI-Terraform-Module-Library/_git/cat-tf-modules//AzureRM4/modules/iothub?ref=main"
 
   name                = "coffee-iot-hub"
   resource_group_name = "my-resource-group"
@@ -79,7 +79,7 @@ module "iothub" {
 }
 
 module "iothub_dps" {
-  source = "./AzureRM4/modules/iothub-dps?ref=main"
+  source = "git::https://dev.azure.com/AADIL/ABBASI-Terraform-Module-Library/_git/cat-tf-modules//AzureRM4/modules/iothub-dps?ref=main"
 
   name                = "coffee-iot-dps"
   resource_group_name = "my-resource-group"

@@ -82,6 +82,20 @@ This Terraform project sets up an Azure IoT testing environment with IoT Hub, De
    az group show --name rt-test-IoT
    ```
 
+## Quick Links
+
+### 🎯 For Presentations & Meetings
+- 📊 **[DEMO.md](DEMO.md)** - Complete 30-minute meeting pitch with live demo script
+- 📄 **[EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)** - One-page overview for decision makers
+- 📋 **[DEMO_QUICK_REFERENCE.md](DEMO_QUICK_REFERENCE.md)** - Quick reference card for presenters
+- 🎤 **[PRESENTATION_SLIDES_OUTLINE.md](PRESENTATION_SLIDES_OUTLINE.md)** - Slide deck outline
+
+### 🚀 For Implementation
+- ⚡ **[QUICKSTART.md](QUICKSTART.md)** - Get started in 10 minutes
+- 🔧 **[DEPLOYMENT.md](DEPLOYMENT.md)** - Detailed deployment guide
+- 📦 **[AzureRM4/modules/README.md](AzureRM4/modules/README.md)** - Module usage & examples
+- 📋 **[INDEX.md](INDEX.md)** - Complete navigation hub
+
 ## Deployment Steps
 
 ### 1. Initialize Terraform
@@ -309,6 +323,14 @@ Type `yes` to confirm deletion.
 - [Raspberry Pi IoT Hub Tutorial](https://learn.microsoft.com/en-us/azure/iot-hub/raspberry-pi-get-started)
 - [IoT Hub Device Provisioning Service](https://learn.microsoft.com/en-us/azure/iot-dps/)
 - [Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/)
+
+## Documentation
+
+- 📊 **[DEMO.md](DEMO.md)** - Complete meeting pitch with demos, module usage, and value propositions
+- 🚀 **[QUICKSTART.md](QUICKSTART.md)** - Get started in 10 minutes
+- 🔧 **[DEPLOYMENT.md](DEPLOYMENT.md)** - Detailed deployment guide
+- 📁 **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** - Project organization
+- 📋 **[INDEX.md](INDEX.md)** - Navigation hub
 
 ## Support
 

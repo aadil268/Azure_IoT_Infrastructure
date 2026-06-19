@@ -44,7 +44,6 @@ output "shared_access_policy" {
   sensitive   = true
 }
 
-# Helper outputs for connection strings
 output "iothubowner_connection_string" {
   description = "Connection string for the iothubowner policy (full access)"
   value = format(
