@@ -1,0 +1,32 @@
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform.tfstate.lock.info
+
+# Terraform plan files
+*.tfplan
+*.tfplan.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include example tfvars
+!terraform.tfvars.example
+
+# Include tflock files (Terraform Lock File)
+!.terraform.lock.hcl
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
