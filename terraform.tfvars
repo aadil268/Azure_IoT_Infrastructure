@@ -4,7 +4,7 @@ location            = "North Europe"
 
 # Project Configuration
 # Use a unique prefix to avoid naming conflicts (IoT Hub names must be globally unique)
-# Examples: "aadil-pi-2026", "cch-iot-test", "mycompany-iot-dev", etc.
+# Examples: "aadil-pi-2026", "abb-iot-test", "mycompany-iot-dev", etc.
 # Revert to original prefix since Event Hub is already deployed
 project_prefix = "raspberrypi"
 
