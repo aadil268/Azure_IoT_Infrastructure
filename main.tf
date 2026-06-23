@@ -28,22 +28,22 @@ module "eventhub" {
 module "eventhub_consumer_group_telemetry" {
   source = "./AzureRM4/modules/eventhub-consumer-group"
 
-  resource_group_name   = data.azurerm_resource_group.main.name
-  namespace_name        = module.eventhub_namespace.name
-  eventhub_name         = module.eventhub.name
-  consumer_group_name   = "telemetry-processor"
-  user_metadata         = "Process device telemetry data"
+  resource_group_name = data.azurerm_resource_group.main.name
+  namespace_name      = module.eventhub_namespace.name
+  eventhub_name       = module.eventhub.name
+  consumer_group_name = "telemetry-processor"
+  user_metadata       = "Process device telemetry data"
 }
 
 # Event Hub Consumer Group - archive processor
 module "eventhub_consumer_group_archive" {
   source = "./AzureRM4/modules/eventhub-consumer-group"
 
-  resource_group_name   = data.azurerm_resource_group.main.name
-  namespace_name        = module.eventhub_namespace.name
-  eventhub_name         = module.eventhub.name
-  consumer_group_name   = "archive-processor"
-  user_metadata         = "Archive telemetry data for long-term storage"
+  resource_group_name = data.azurerm_resource_group.main.name
+  namespace_name      = module.eventhub_namespace.name
+  eventhub_name       = module.eventhub.name
+  consumer_group_name = "archive-processor"
+  user_metadata       = "Archive telemetry data for long-term storage"
 }
 
 # Event Hub Authorization Rule - for IoT Hub routing
